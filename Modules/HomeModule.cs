@@ -10,7 +10,14 @@ namespace HairSalon
     public HomeModule()
     {
       Get["/"] = _ => {
-        return View["index.cshtml"];
+        List<Stylist> stylists = Stylist.GetAll();
+        return View["index.cshtml", stylists];
+      };
+      Post["/stylists/new"] = _ => {
+        Stylist newStylist = new Stylist(Request.Form["name"], Request.Form["avail"], Request.Form["notes"]);
+        newStylist.Save();
+        List<Stylist> stylists = Stylist.GetAll();
+        return View["index.cshtml", stylists];
       };
     }
   }
