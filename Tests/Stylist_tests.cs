@@ -38,10 +38,20 @@ namespace HairSalon
       //Arrange/Act
       Stylist item = new Stylist("Sherri", "M-W-F", "Clients love her.");
       item.Save();
-      List<Stylist> allStylists = Stylist.GetAll();
 
       //Assert
-      Assert.Equal(Stylist.Find(item.GetId()), item);
+      Assert.Equal(Stylist.Find(item.id), item);
+    }
+    [Fact]
+    public void Test_Update()
+    {
+      //Arrange/Act
+      Stylist item = new Stylist("Sherri", "M-W-F", "Clients love her.");
+      item.Save();
+      item.Update(new List<string>{"name"}, new List<object>{"Sherry"});
+
+      //Assert
+      Assert.Equal(Stylist.Find(item.id).name, "Sherry");
     }
     public void Dispose()
     {
