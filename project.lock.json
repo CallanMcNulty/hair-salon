@@ -737,7 +737,7 @@
         }
       }
     },
-    "DNX,Version=v4.5.1/manjaro-x86": {
+    "DNX,Version=v4.5.1/win7-x86": {
       "Microsoft.AspNet.FileProviders.Abstractions/1.0.0-rc1-final": {
         "type": "package",
         "dependencies": {
@@ -966,6 +966,9 @@
         },
         "runtime": {
           "lib/dnx451/Microsoft.AspNet.Server.Kestrel.dll": {}
+        },
+        "native": {
+          "runtimes/win7-x86/native/libuv.dll": {}
         }
       },
       "Microsoft.AspNet.WebUtilities/1.0.0-rc1-final": {
@@ -1472,7 +1475,7 @@
         }
       }
     },
-    "DNX,Version=v4.5.1/manjaro-x64": {
+    "DNX,Version=v4.5.1/win7-x64": {
       "Microsoft.AspNet.FileProviders.Abstractions/1.0.0-rc1-final": {
         "type": "package",
         "dependencies": {
@@ -1701,6 +1704,9 @@
         },
         "runtime": {
           "lib/dnx451/Microsoft.AspNet.Server.Kestrel.dll": {}
+        },
+        "native": {
+          "runtimes/win7-x64/native/libuv.dll": {}
         }
       },
       "Microsoft.AspNet.WebUtilities/1.0.0-rc1-final": {

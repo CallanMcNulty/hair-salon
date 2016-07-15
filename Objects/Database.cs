@@ -30,6 +30,7 @@ namespace HairSalon
       paramValues = paramValues ?? new List<object> {};
       SqlConnection conn = DB.Connection();
       conn.Open();
+      SqlDataReader rdr = null;
 
       SqlCommand cmd = new SqlCommand(command, conn);
 
@@ -40,7 +41,7 @@ namespace HairSalon
         newParameter.Value = paramValues[i];
         cmd.Parameters.Add(newParameter);
       }
-      return new DBObjects(conn, cmd);
+      return new DBObjects(conn, rdr, cmd);
     }
     public void Close()
     {

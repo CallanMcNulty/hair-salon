@@ -6,17 +6,16 @@ using System.Data.SqlClient;
 
 namespace HairSalon
 {
-  public class CategoryTest : IDisposable
+  public class ClientTest : IDisposable
   {
-    public CategoryTest()
+    public ClientTest()
     {
       DBConfiguration.ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=hair_salon_test;Integrated Security=SSPI;";
     }
 
     public void Dispose()
     {
-      Cuisine.DeleteAll();
-      Restaurant.DeleteAll();
+      //Client.DeleteAll();
     }
   }
 }
