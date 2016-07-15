@@ -12,10 +12,61 @@ namespace HairSalon
     {
       DBConfiguration.ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=hair_salon_test;Integrated Security=SSPI;";
     }
+    [Fact]
+    public void Test_DeleteAll_StartsEmpty()
+    {
+      //Arrange
+      List<Client> allClients = Client.GetAll();
 
+      //Assert
+      Assert.Equal(0, allClients.Count);
+    }
+    [Fact]
+    public void Test_Save_CanRetrieveOneItem()
+    {
+      //Arrange/Act
+      Client item = new Client("Janet", 0, "She's a handful.");
+      item.Save();
+      List<Client> allClients = Client.GetAll();
+
+      //Assert
+      Assert.Equal(1, allClients.Count);
+    }
+    [Fact]
+    public void Test_Save_Find_FoundItemEqualsItem()
+    {
+      //Arrange/Act
+      Client item = new Client("Janet", 0, "Clients love her.");
+      item.Save();
+
+      //Assert
+      Assert.Equal(Client.Find(item.id), item);
+    }
+    [Fact]
+    public void Test_Update()
+    {
+      //Arrange/Act
+      Client item = new Client("Janet", 0, "Clients love her.");
+      item.Save();
+      item.Update(new List<string>{"name"}, new List<object>{"Sherry"});
+
+      //Assert
+      Assert.Equal(Client.Find(item.id).name, "Sherry");
+    }
+    [Fact]
+    public void Test_Delete()
+    {
+      //Arrange/Act
+      Client item = new Client("Janet", 0, "Clients love her.");
+      item.Save();
+      item.Delete();
+
+      //Assert
+      Assert.Equal(Client.Find(item.id), null);
+    }
     public void Dispose()
     {
-      //Client.DeleteAll();
+      Client.DeleteAll();
     }
   }
 }
