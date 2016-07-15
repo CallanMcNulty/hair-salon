@@ -26,7 +26,7 @@ else
 <h3>Add Client</h3>
 <form action="/clients/new" method="post">
   <label for="name">Name:</label>
-  <input type="text" name="name">
+  <input type="text" name="name" required>
   <br>
   <br>
   <label for="notes">Notes:</label>
@@ -35,6 +35,24 @@ else
   <br>
   <input type="number" name="stylist_id" value=@Model.id hidden="hidden">
   <button type="submit">Add</button>
+</form>
+<hr>
+<h2>Edit Stylist</h2>
+<form action="/stylists/edit/@Model.id" method="post">
+  <input type="hidden" name="_method" value="PATCH">
+  <label for="name">Name:</label>
+  <input type="text" name="name" value="@Model.name" required>
+  <br>
+  <br>
+  <label for="avail">Days Available:</label>
+  <input type="text" name="avail" value="@Model.availability" required>
+  <br>
+  <br>
+  <label for="notes">Notes:</label>
+  <br>
+  <textarea name="notes" rows="8" cols="40">@Model.notes</textarea>
+  <br>
+  <button type="submit">Update Stylist</button>
 </form>
 <hr>
 <a href="/">Back to Stylist List</a>
