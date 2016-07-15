@@ -111,8 +111,14 @@ namespace HairSalon
         DBObjects dbo = DBObjects.CreateCommand("UPDATE stylists SET "+currentColumn+" = @NewValue WHERE id=@Id;", new List<string> {"@NewValue", "@Id"}, new List<object> {updateValues[i], _id});
         dbo.CMD.ExecuteNonQuery();
         PropertyInfo propertyInfo = this.GetType().GetProperty(currentColumn);
-        propertyInfo.SetValue(this, Convert.ChangeType(updateValues[i], propertyInfo.PropertyType), null);
+        propertyInfo.SetValue(this, updateValues[i], null);
       }
+    }
+    public void Delete()
+    {
+      DBObjects dbo = DBObjects.CreateCommand("DELETE FROM stylists WHERE id=@Id;", new List<string> {"@Id"},  new List<object> {_id});
+      dbo.CMD.ExecuteNonQuery();
+      dbo.Close();
     }
     public static List<Stylist> GetAll()
     {

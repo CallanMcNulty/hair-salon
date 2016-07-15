@@ -53,6 +53,17 @@ namespace HairSalon
       //Assert
       Assert.Equal(Stylist.Find(item.id).name, "Sherry");
     }
+    [Fact]
+    public void Test_Delete()
+    {
+      //Arrange/Act
+      Stylist item = new Stylist("Sherri", "M-W-F", "Clients love her.");
+      item.Save();
+      item.Delete();
+
+      //Assert
+      Assert.Equal(Stylist.Find(item.id), null);
+    }
     public void Dispose()
     {
       Stylist.DeleteAll();
