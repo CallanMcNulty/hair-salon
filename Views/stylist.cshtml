@@ -1,0 +1,39 @@
+<h1>@Model.name</h1>
+<hr>
+<h2>Info:</h2>
+<ul>
+  <li>Available @Model.availability</li>
+  @if(Model.notes!="")
+  {
+    <li>@Model.notes</li>
+  }
+</ul>
+<hr>
+<h2>Clients:</h2>
+@if(Model.GetClients().Count==0)
+{
+  <h4>-No current clients for this stylist-</h4>
+}
+else
+{
+  <ul>
+    @foreach(var client in Model.GetClients())
+    {
+      <li><a href="#">@client.name</a></li>
+    }
+  </ul>
+}
+<h3>Add Client</h3>
+<form action="/clients/new" method="post">
+  <label for="name">Name:</label>
+  <input type="text" name="name">
+  <br>
+  <br>
+  <label for="notes">Notes:</label>
+  <br>
+  <textarea name="notes" rows="8" cols="40"></textarea>
+  <br>
+  <input type="number" name="stylist_id" value=@Model.id hidden="hidden">
+  <button type="submit">Add</button>
+</form>
+<hr>
