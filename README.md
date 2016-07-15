@@ -11,6 +11,13 @@ This web app will access a database of hair stylists and hair salon clients. The
 ## Setup/Installation Requirements
 
 * Clone repository from GitHub
+* To import the database:
+  * Open SSMS
+  * Select File>Open>File and select hair_salon.sql in the cloned directory
+  * Add the following lines to the top of the script
+    * CREATE DATABASE hair_salon
+    * GO
+  * Click Save then Execute
 * To start the server:
   * Open terminal and navigate to cloned directory
   * Enter the command: dnu restore
