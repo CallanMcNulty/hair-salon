@@ -33,6 +33,12 @@ namespace HairSalon
         editedStylist.Update(updateColumns, updateValues);
         return View["stylist.cshtml", editedStylist];
       };
+      Delete["/stylists/delete/{id}"] = parameter => {
+        Stylist deletedStylist = Stylist.Find(parameter.id);
+        deletedStylist.Delete();
+        List<Stylist> stylists = Stylist.GetAll();
+        return View["index.cshtml", stylists];
+      };
       Post["/clients/new"] = _ => {
         string newName = (string)Request.Form["name"];
         int stylistId = (int)Request.Form["stylist_id"];

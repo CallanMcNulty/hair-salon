@@ -38,7 +38,7 @@ else
 </form>
 <hr>
 <h2>Edit Stylist</h2>
-<form action="/stylists/edit/@Model.id" method="post">
+<form action="/stylists/edit/@Model.id" method="post" style="display:inline;">
   <input type="hidden" name="_method" value="PATCH">
   <label for="name">Name:</label>
   <input type="text" name="name" value="@Model.name" required>
@@ -54,5 +54,11 @@ else
   <br>
   <button type="submit">Update Stylist</button>
 </form>
+<form action="/stylists/delete/@Model.id" method="post" style="display:inline;">
+  <input type="hidden" name="_method" value="DELETE">
+  <button type="submit">Delete Stylist</button>
+</form>
+<br>
+<br>
 <hr>
 <a href="/">Back to Stylist List</a>
