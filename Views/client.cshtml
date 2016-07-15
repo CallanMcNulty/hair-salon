@@ -4,10 +4,10 @@
 {
   <h2>Notes:</h2>
   <p>@Model[0].notes</p>
+  <hr>
 }
-<hr>
 <h2>Edit Client</h2>
-<form action="/clients/edit/@Model[0].id" method="post">
+<form action="/clients/edit/@Model[0].id" method="post" style="display:inline;">
   <input type="hidden" name="_method" value="PATCH">
   <label for="name">Name:</label>
   <input type="text" name="name" value="@Model[0].name" required>
@@ -33,6 +33,13 @@
   <br>
   <textarea name="notes" rows="8" cols="40">@Model[0].notes</textarea>
   <br>
-  <button type="submit">Edit</button>
+  <button type="submit">Edit Client</button>
 </form>
+<form action="/clients/delete/@Model[0].id" method="post" style="display:inline;">
+  <input type="hidden" name="_method" value="DELETE">
+  <button type="submit">Delete Client</button>
+</form>
+<br>
+<br>
 <hr>
+<a href="/stylists/@Model[0].stylist_id">Back to Stylist Page</a>
