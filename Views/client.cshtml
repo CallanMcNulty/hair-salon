@@ -1,0 +1,38 @@
+<h1>@Model[0].name</h1>
+<hr>
+@if(Model[0].notes.Length>0)
+{
+  <h2>Notes:</h2>
+  <p>@Model[0].notes</p>
+}
+<hr>
+<h2>Edit Client</h2>
+<form action="/clients/edit/@Model[0].id" method="post">
+  <input type="hidden" name="_method" value="PATCH">
+  <label for="name">Name:</label>
+  <input type="text" name="name" value="@Model[0].name" required>
+  <br>
+  <br>
+  <label for="stylist_id">Stylist: </label>
+  <select name="stylist_id">
+    @foreach(var stylist in Model[1])
+    {
+      @if(stylist.id==Model[0].stylist_id)
+      {
+        <option selected="selected" value="@stylist.id">@stylist.name</option>
+      }
+      else
+      {
+        <option value="@stylist.id">@stylist.name</option>
+      }
+    }
+  </select>
+  <br>
+  <br>
+  <label for="notes">Notes:</label>
+  <br>
+  <textarea name="notes" rows="8" cols="40">@Model[0].notes</textarea>
+  <br>
+  <button type="submit">Edit</button>
+</form>
+<hr>
