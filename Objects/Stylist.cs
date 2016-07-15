@@ -47,6 +47,21 @@ namespace HairSalon
 
       dbo.Close();
     }
+    public static Stylist Find(int findId)
+    {
+      DBObjects dbo = DBObjects.CreateCommand("SELECT * FROM stylists WHERE id=@Id;", new List<string> {"@Id"},  new List<object> {findId});
+      SqlDataReader rdr = dbo.RDR;
+      rdr = dbo.CMD.ExecuteReader();
+
+      Stylist result = null;
+      while(rdr.Read())
+      {
+        result = new Stylist(rdr.GetString(1), rdr.GetString(2), rdr.GetString(3), rdr.GetInt32(0));
+      }
+
+      dbo.Close();
+      return result;
+    }
     public static List<Stylist> GetAll()
     {
       DBObjects dbo = DBObjects.CreateCommand("SELECT * FROM stylists;");

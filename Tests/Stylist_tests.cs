@@ -33,7 +33,7 @@ namespace HairSalon
       Assert.Equal(1, allStylists.Count);
     }
     [Fact]
-    public void Test_Save_SavedItemEqualsItem()
+    public void Test_Save_Find_FoundItemEqualsItem()
     {
       //Arrange/Act
       Stylist item = new Stylist("Sherri", "M-W-F", "Clients love her.");
@@ -41,7 +41,7 @@ namespace HairSalon
       List<Stylist> allStylists = Stylist.GetAll();
 
       //Assert
-      Assert.Equal(allStylists[0], item);
+      Assert.Equal(Stylist.Find(item.GetId()), item);
     }
     public void Dispose()
     {
