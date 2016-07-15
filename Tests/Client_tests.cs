@@ -36,7 +36,7 @@ namespace HairSalon
     public void Test_Save_Find_FoundItemEqualsItem()
     {
       //Arrange/Act
-      Client item = new Client("Janet", 0, "Clients love her.");
+      Client item = new Client("Janet", 0, "She's a handful.");
       item.Save();
 
       //Assert
@@ -46,18 +46,18 @@ namespace HairSalon
     public void Test_Update()
     {
       //Arrange/Act
-      Client item = new Client("Janet", 0, "Clients love her.");
+      Client item = new Client("Janet", 0, "She's a handful.");
       item.Save();
       item.Update(new List<string>{"name"}, new List<object>{"Sherry"});
-
+      
       //Assert
-      Assert.Equal(Client.Find(item.id).name, "Sherry");
+      Assert.Equal(item.name, "Sherry");
     }
     [Fact]
     public void Test_Delete()
     {
       //Arrange/Act
-      Client item = new Client("Janet", 0, "Clients love her.");
+      Client item = new Client("Janet", 0, "She's a handful.");
       item.Save();
       item.Delete();
 
@@ -66,6 +66,7 @@ namespace HairSalon
     }
     public void Dispose()
     {
+      Stylist.DeleteAll();
       Client.DeleteAll();
     }
   }

@@ -141,6 +141,20 @@ namespace HairSalon
       dbo.CMD.ExecuteNonQuery();
       dbo.Close();
     }
+    public List<Client> GetClients()
+    {
+      DBObjects dbo = DBObjects.CreateCommand("SELECT * FROM clients WHERE stylist_id=@Id;", new List<string> {"@Id"}, new List<object> {_id});
+      SqlDataReader rdr = dbo.RDR;
+      rdr = dbo.CMD.ExecuteReader();
 
+      List<Client> allClients = new List<Client> {};
+      while(rdr.Read())
+      {
+        allClients.Add( new Client(rdr.GetString(1), rdr.GetInt32(2), rdr.GetString(3), rdr.GetInt32(0)) );
+      }
+
+      dbo.Close();
+      return allClients;
+    }
   }
 }
