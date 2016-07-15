@@ -18,6 +18,22 @@ namespace HairSalon
       _availability = Availability;
       _notes = Notes;
     }
+    public int GetId()
+    {
+      return _id;
+    }
+    public override bool Equals(System.Object otherStylist)
+    {
+      if(!(otherStylist is Stylist))
+      {
+        return false;
+      }
+      else
+      {
+        Stylist newStylist = (Stylist) otherStylist;
+        return (_id==newStylist.GetId());
+      }
+    }
     public void Save()
     {
       DBObjects dbo = DBObjects.CreateCommand("INSERT INTO stylists (name, availability, notes) OUTPUT INSERTED.id VALUES (@Name, @Avail, @Notes);", new List<string> {"@Name", "@Avail", "@Notes"},  new List<object> {_name, _availability, _notes});
